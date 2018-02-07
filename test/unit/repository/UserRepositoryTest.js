@@ -24,6 +24,7 @@ describe("UserRepository", function() {
         expect(mockDb.write).toHaveBeenCalledTimes(1);
     });
 
+    //Create Exceptions
     it("should throw exception undefined", function(){
         var repository = new UserRepository({});
         var f = function(){
@@ -42,6 +43,47 @@ describe("UserRepository", function() {
         };
 
         expect(f).toThrow('User object is missing information')
+    });
+
+    //Find Exception
+    it("should throw exception undefined", function(){
+        var repository = new UserRepository({});
+        var f = function(){
+            repository.findOneById();
+        };
+
+        expect(f).toThrow('Id is undefined')
+    });
+
+    //Update Exception
+    it("should throw exception undefined", function(){
+        var repository = new UserRepository({});
+        var f = function(){
+            repository.update();
+        };
+
+        expect(f).toThrow('User object is undefined')
+    });
+
+    it("should throw exception missing information", function(){
+        var repository = new UserRepository({});
+        var f = function(){
+            repository.update({
+                'id' : 1
+            });
+        };
+
+        expect(f).toThrow('User object is missing information')
+    });
+
+    //Delete Exception
+    it("should throw exception undefined", function(){
+        var repository = new UserRepository({});
+        var f = function(){
+            repository.delete();
+        };
+
+        expect(f).toThrow('Id is undefined')
     });
 
 });
